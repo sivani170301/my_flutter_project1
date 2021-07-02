@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -37,8 +38,36 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        //leading: Icon(Icons.home),
+        title: Text("Demo StateApp", style: TextStyle(fontSize: 24.0),),
+        actions: [
+          Icon(Icons.help),
+          Icon(Icons.logout_rounded)
+        ],
       ),
+      drawer: Drawer(
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Text("Welcome to Burger Menu",style: TextStyle(fontSize: 20.0),),
+          ),
+          Divider(thickness: 2,color: Colors.teal,),
+          ListTile(
+            title: Text("Contact Email"),
+            trailing: Icon(Icons.contact_mail),
+          ),
+          Divider(thickness: 2,color: Colors.teal,),
+          ListTile(
+            title: Text("Call for help"),
+            trailing: Icon(Icons.call),
+          ),
+          Divider(thickness: 2,color: Colors.teal,),
+          ListTile(
+            title: Text("Log out"),
+            trailing: Icon(Icons.logout),
+          ),
+          Divider(thickness: 2,color: Colors.teal,),
+        ],),),
       body: Center(
         child: ListView(
           //mainAxisAlignment: MainAxisAlignment.center,
