@@ -1,3 +1,5 @@
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -98,11 +100,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            InkWell(
+              onTap: ()async{
+                await launch("https://www.facebook.com/");
+              },
+              child: Text("FACEBOOK",style: TextStyle(fontSize:23,color: Colors.blue))),
             ElevatedButton(
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.yellow)),
               onPressed: (){
-                 print("User Clicked the button.");
-            }, child: Text("Click Here",style: TextStyle(color: Colors.brown, fontSize: 30.0),)),
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return WelcomeUser();
+                }));
+                
+            }, child: Text("Submit",style: TextStyle(color: Colors.brown, fontSize: 30.0),)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -132,6 +142,37 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class WelcomeUser extends StatefulWidget {
+  const WelcomeUser({ Key? key }) : super(key: key);
+
+  @override
+  _WelcomeUserState createState() => _WelcomeUserState();
+}
+
+class _WelcomeUserState extends State<WelcomeUser> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+           children: [Center(child: Text("Thank you for submitting.", style: TextStyle(fontSize: 30),)),
+           SizedBox(
+             height: MediaQuery.of(context).size.height/6,
+             width: 100,
+             child: InkWell(
+               onTap: (){
+                 Navigator.pop(context);
+               },
+               child: Image.asset("assets/back.png", ))),
+           ]),
+        
+      ),
+     
     );
   }
 }
